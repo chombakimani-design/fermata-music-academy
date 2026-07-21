@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# FMA development temporary files
+build-errors.txt
+dashboard-block.txt
+student-dashboard-insert.txt
+student-dashboard-ui.txt
+student-query.txt
+tutor-page-copy.txt
+backups/
+check-payment-schema.ts
+check-payments.ts
+check-tutor-data.ts
