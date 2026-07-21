@@ -5,7 +5,7 @@ export default function Logo() {
   return (
     <Link href="/" className="flex items-center gap-3">
       <Image
-        src="/images/logo.png"
+        src="/images/fermata-logo.png"
         alt="Fermata Music Academy"
         width={70}
         height={70}
