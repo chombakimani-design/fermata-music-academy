@@ -7,6 +7,7 @@ import About from "@/components/home/About";
 import Courses from "@/components/home/Courses";
 import WhyChoose from "@/components/home/WhyChoose";
 import Contact from "@/components/home/Contact";
+import Testimonials from "@/components/home/Testimonials";
 import Footer from "@/components/layout/Footer";
 
 export default async function Home() {
@@ -40,6 +41,8 @@ export default async function Home() {
             <section id="why-us">
                 <WhyChoose />
             </section>
+
+            <Testimonials />
 
             <section id="contact">
                 <Contact />
