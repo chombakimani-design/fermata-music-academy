@@ -11,7 +11,7 @@ export default function Stats() {
             <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 px-6 text-center md:grid-cols-4">
                 {stats.map((stat) => (
                     <div key={stat.label}>
-                        <h2 className="text-5xl font-extrabold text-amber-400">
+                        <h2 className="text-5xl font-extrabold text-yellow-300">
                             {stat.value}
                         </h2>
 

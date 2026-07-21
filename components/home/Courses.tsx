@@ -11,13 +11,13 @@ export default function Courses({
     courses: Course[];
 }) {
     return (
-        <section className="bg-gradient-to-b from-white to-amber-50 py-24">
+        <section className="bg-white py-24">
 
             <div className="mx-auto max-w-7xl px-6">
 
                 <div className="text-center">
 
-                    <span className="rounded-full bg-amber-100 px-5 py-2 font-semibold text-amber-700">
+                    <span className="rounded-full bg-gradient-to-r from-yellow-100 to-amber-100 px-5 py-2 font-semibold text-amber-700">
                         Professional Music Programmes
                     </span>
 
@@ -38,10 +38,10 @@ export default function Courses({
 
                         <div
                             key={course.id}
-                            className="group rounded-3xl border-2 border-amber-200 bg-white p-8 shadow-lg transition duration-300 hover:-translate-y-3 hover:border-amber-500 hover:shadow-2xl"
+                            className="group rounded-3xl border-2 border-amber-300 bg-white p-8 shadow-lg transition duration-300 hover:-translate-y-3 hover:border-yellow-500 hover:shadow-2xl"
                         >
 
-                            <div className="mb-6 inline-flex rounded-full bg-amber-100 px-4 py-2 text-sm font-bold uppercase tracking-wide text-amber-700">
+                            <div className="mb-6 inline-flex rounded-full bg-gradient-to-r from-yellow-100 to-amber-100 px-4 py-2 text-sm font-bold uppercase tracking-wide text-amber-700">
                                 Course
                             </div>
 
@@ -61,7 +61,7 @@ export default function Courses({
                                         : "Contact Us"}
                                 </span>
 
-                                <button className="rounded-full bg-amber-500 px-6 py-3 font-semibold text-white transition hover:bg-amber-600">
+                                <button className="rounded-full bg-gradient-to-r from-yellow-400 to-amber-500 px-6 py-3 font-semibold text-white transition hover:bg-amber-600">
                                     Enrol
                                 </button>
 

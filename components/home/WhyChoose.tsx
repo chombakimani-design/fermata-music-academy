@@ -49,7 +49,7 @@ export default function WhyChoose() {
             return (
               <div
                 key={feature.title}
-                className="rounded-2xl bg-white/10 p-8 backdrop-blur"
+                className="rounded-2xl bg-slate-50/10 p-8 backdrop-blur"
               >
                 <Icon className="h-12 w-12 text-amber-400" />
 

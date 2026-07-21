@@ -15,7 +15,7 @@ export default function Testimonials() {
     ];
 
     return (
-        <section className="bg-white py-24">
+        <section className="bg-white py-20">
 
             <div className="mx-auto max-w-7xl px-6">
 
@@ -37,11 +37,11 @@ export default function Testimonials() {
 
                         <div
                             key={item.name}
-                            className="rounded-3xl border-2 border-amber-200 bg-gradient-to-b from-white to-amber-50 p-8 shadow-lg"
+                            className="rounded-3xl border-2 border-yellow-300 bg-gradient-to-b from-white to-amber-50 p-8 shadow-lg"
                         >
 
-                            <div className="mb-6 text-3xl text-amber-500">
-                                ★★★★★
+                            <div className="mb-6 text-3xl text-yellow-500">
+                                ⭐⭐⭐⭐⭐
                             </div>
 
                             <p className="leading-8 text-slate-600">
