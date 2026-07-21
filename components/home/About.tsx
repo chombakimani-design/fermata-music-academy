@@ -1,10 +1,10 @@
 export default function About() {
   return (
-    <section className="bg-slate-50 py-24">
+    <section className="bg-slate-50 py-16">
 
       <div className="mx-auto max-w-7xl px-6">
 
-        <div className="grid items-center gap-16 lg:grid-cols-2">
+        <div className="grid items-center gap-10 lg:grid-cols-2">
 
           <div>
 
@@ -12,7 +12,7 @@ export default function About() {
               About Fermata Music Academy
             </h2>
 
-            <p className="mt-8 text-lg leading-9 text-slate-600">
+            <p className="mt-6 text-lg leading-9 text-slate-600">
               Fermata Music Academy is committed to nurturing musical talent through
               quality instruction, practical training and internationally recognised
               music education. Whether you are a beginner, a teacher, a church musician,
@@ -27,7 +27,7 @@ export default function About() {
 
           </div>
 
-          <div className="rounded-3xl bg-[#0B3C88] p-12 text-white shadow-2xl">
+          <div className="rounded-3xl bg-[#0B3C88] p-8 text-white shadow-2xl">
 
             <h3 className="text-3xl font-bold">
               Our Vision
