@@ -25,6 +25,8 @@ export default function Courses({
                         Our Courses
                     </h2>
 
+<div className="mx-auto mt-5 h-1 w-24 rounded-full bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400"></div>
+
                     <p className="mx-auto mt-6 max-w-3xl text-xl leading-8 text-slate-600">
                         From beginners to professional musicians, discover
                         programmes designed to unlock your musical potential.

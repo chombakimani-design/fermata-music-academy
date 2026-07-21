@@ -34,6 +34,8 @@ export default function WhyChoose() {
             Why Choose Fermata?
           </h2>
 
+<div className="mx-auto mt-5 h-1 w-24 rounded-full bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400"></div>
+
           <p className="mx-auto mt-6 max-w-3xl text-xl text-blue-100">
             We combine professional instruction, practical experience and a passion
             for music to help every learner achieve excellence.

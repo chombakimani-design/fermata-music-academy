@@ -12,6 +12,8 @@ export default function About() {
               About Fermata Music Academy
             </h2>
 
+<div className="mt-5 h-1 w-24 rounded-full bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400"></div>
+
             <p className="mt-6 text-lg leading-9 text-slate-600">
               Fermata Music Academy is committed to nurturing musical talent through
               quality instruction, practical training and internationally recognised

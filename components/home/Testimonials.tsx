@@ -29,6 +29,8 @@ export default function Testimonials() {
                         What Our Students Say
                     </h2>
 
+<div className="mx-auto mt-5 h-1 w-24 rounded-full bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400"></div>
+
                 </div>
 
                 <div className="mt-16 grid gap-8 lg:grid-cols-3">

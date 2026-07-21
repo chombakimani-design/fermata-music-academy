@@ -10,6 +10,8 @@ export default function Contact() {
           Contact Us
         </h2>
 
+<div className="mx-auto mt-5 h-1 w-24 rounded-full bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300"></div>
+
         <p className="mt-6 text-xl text-blue-100">
           We'd love to hear from you.
         </p>

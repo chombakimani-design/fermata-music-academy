@@ -30,17 +30,25 @@ export default async function Home() {
 
             <Stats />
 
+            <div className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
+
             <section id="about">
                 <About />
             </section>
+
+            <div className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
 
             <section id="courses">
                 <Courses courses={courses} />
             </section>
 
+            <div className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
+
             <section id="why-us">
                 <WhyChoose />
             </section>
+
+            <div className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
 
             <Testimonials />
 
