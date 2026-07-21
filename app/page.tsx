@@ -12,10 +12,12 @@ export default async function Home() {
 
     const supabase = await createClient();
 
-    const { data: courses = [] } = await supabase
+    const { data } = await supabase
         .from("courses")
         .select("*")
         .order("id");
+
+    const courses = data ?? [];
 
     return (
         <main className="min-h-screen bg-white scroll-smooth">
@@ -45,3 +47,4 @@ export default async function Home() {
         </main>
     );
 }
+
