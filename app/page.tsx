@@ -1,38 +1,47 @@
 import { createClient } from "@/lib/supabase/server";
 
+import Navbar from "@/components/layout/Navbar";
+import Hero from "@/components/home/Hero";
+import About from "@/components/home/About";
+import Courses from "@/components/home/Courses";
+import WhyChoose from "@/components/home/WhyChoose";
+import Contact from "@/components/home/Contact";
+import Footer from "@/components/layout/Footer";
+
 export default async function Home() {
 
     const supabase = await createClient();
 
-    const { data, error } = await supabase
+    const { data: courses = [] } = await supabase
         .from("courses")
-        .select("*");
-
-    console.log(data);
-    console.log(error);
+        .select("*")
+        .order("id");
 
     return (
+        <main className="min-h-screen bg-white scroll-smooth">
 
-        <main className="flex min-h-screen items-center justify-center">
+            <Navbar />
 
-            <div className="rounded-2xl border border-brand-gold bg-white p-10 shadow">
+            <Hero />
 
-                <h1 className="text-4xl font-bold text-brand-dark">
+            <section id="about">
+                <About />
+            </section>
 
-                    Fermata Music Academy
+            <section id="courses">
+                <Courses courses={courses} />
+            </section>
 
-                </h1>
+            <section id="why-us">
+                <WhyChoose />
+            </section>
 
-                <p className="mt-4 text-slate-600">
+            <section id="contact">
+                <Contact />
+            </section>
 
-                    Supabase Connected Successfully
-
-                </p>
-
-            </div>
+            <Footer />
 
         </main>
-
     );
-
 }
