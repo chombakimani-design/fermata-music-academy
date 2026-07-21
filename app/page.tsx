@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/home/Hero";
+import Stats from "@/components/home/Stats";
 import About from "@/components/home/About";
 import Courses from "@/components/home/Courses";
 import WhyChoose from "@/components/home/WhyChoose";
@@ -25,6 +26,8 @@ export default async function Home() {
             <Navbar />
 
             <Hero />
+
+            <Stats />
 
             <section id="about">
                 <About />
