@@ -11,7 +11,7 @@ export default function Courses({
     courses: Course[];
 }) {
     return (
-        <section className="bg-white py-14">
+        <section className="bg-white py-10">
 
             <div className="mx-auto max-w-7xl px-6">
 
@@ -40,7 +40,7 @@ export default function Courses({
 
                         <div
                             key={course.id}
-                            className="group rounded-3xl border-2 border-amber-300 bg-white p-5 shadow-lg transition duration-300 hover:-translate-y-3 hover:border-yellow-500 hover:shadow-2xl"
+                            className="group rounded-3xl border-2 border-amber-300 bg-white p-4 shadow-lg transition duration-300 hover:-translate-y-3 hover:border-yellow-500 hover:shadow-2xl"
                         >
 
                             <div className="mb-6 inline-flex rounded-full bg-gradient-to-r from-yellow-100 to-amber-100 px-4 py-2 text-sm font-bold uppercase tracking-wide text-amber-700">
@@ -55,7 +55,7 @@ export default function Courses({
                                 {course.description ?? "Professional music training tailored for every learner."}
                             </p>
 
-                            <div className="mt-8 flex items-center justify-between border-t border-amber-100 pt-6">
+                            <div className="mt-8 flex items-center gap-4 border-t border-amber-100 pt-6">
 
                                 <span className="text-3xl font-extrabold text-amber-600">
                                     {course.fee
@@ -80,4 +80,5 @@ export default function Courses({
         </section>
     );
 }
+
 

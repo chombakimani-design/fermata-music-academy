@@ -16,9 +16,9 @@ export default function Contact() {
           We'd love to hear from you.
         </p>
 
-        <div className="mt-10 grid gap-8 md:grid-cols-3">
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
 
-          <div className="rounded-2xl border p-8 shadow-lg">
+          <div className="rounded-2xl border p-5 shadow-lg">
             <Phone className="mx-auto h-10 w-10 text-amber-500"/>
             <h3 className="mt-6 text-2xl font-bold">WhatsApp</h3>
             <p className="mt-3 text-blue-100">
@@ -26,7 +26,7 @@ export default function Contact() {
             </p>
           </div>
 
-          <div className="rounded-2xl border p-8 shadow-lg">
+          <div className="rounded-2xl border p-5 shadow-lg">
             <Music className="mx-auto h-10 w-10 text-amber-500"/>
             <h3 className="mt-6 text-2xl font-bold">X</h3>
             <p className="mt-3 text-blue-100">
@@ -34,7 +34,7 @@ export default function Contact() {
             </p>
           </div>
 
-          <div className="rounded-2xl border p-8 shadow-lg">
+          <div className="rounded-2xl border p-5 shadow-lg">
             <Mail className="mx-auto h-10 w-10 text-amber-500"/>
             <h3 className="mt-6 text-2xl font-bold">Email</h3>
             <p className="mt-3 text-blue-100 break-all">
@@ -49,3 +49,4 @@ export default function Contact() {
     </section>
   );
 }
+

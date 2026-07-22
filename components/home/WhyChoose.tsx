@@ -25,7 +25,7 @@ const features = [
 
 export default function WhyChoose() {
   return (
-    <section className="bg-[#0B3C88] py-24 text-white">
+    <section className="bg-[#0B3C88] py-10 text-white">
       <div className="mx-auto max-w-7xl px-6">
 
         <div className="text-center">
@@ -43,7 +43,7 @@ export default function WhyChoose() {
 
         </div>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
 
           {features.map((feature) => {
             const Icon = feature.icon;
@@ -51,7 +51,7 @@ export default function WhyChoose() {
             return (
               <div
                 key={feature.title}
-                className="rounded-2xl bg-slate-50/10 p-8 backdrop-blur"
+                className="rounded-2xl bg-slate-50/10 p-5 backdrop-blur"
               >
                 <Icon className="h-12 w-12 text-amber-400" />
 
@@ -72,3 +72,4 @@ export default function WhyChoose() {
     </section>
   );
 }
+

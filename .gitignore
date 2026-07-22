@@ -50,3 +50,5 @@ backups/
 check-payment-schema.ts
 check-payments.ts
 check-tutor-data.ts
+.vercel
+.env*
