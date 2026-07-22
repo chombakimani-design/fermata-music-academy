@@ -67,7 +67,7 @@ export default function Courses({
                                         : "Contact Us"}
                                 </span>
 
-                                <Link href={user ? `/student/courses/${course.id}` : `/auth/register?course=${course.id}`} className="rounded-full bg-gradient-to-r from-yellow-400 to-amber-500 px-4 py-2 font-semibold text-white transition hover:bg-amber-600">Enrol</Link>
+                                <Link href={user ? `/student/courses/${course.id}` : `/auth/register?course=${course.id}`} className="rounded-full bg-brand-primary px-4 py-2 font-semibold text-white transition hover:bg-brand-dark">Enrol</Link>
 
                             </div>
 
@@ -82,6 +82,7 @@ export default function Courses({
         </section>
     );
 }
+
 
 
 
