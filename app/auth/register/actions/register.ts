@@ -137,6 +137,18 @@ export async function register(formData: FormData) {
 
 
 
+    const course = String(
+        formData.get("course") ?? ""
+    ).trim();
+
+    if (course) {
+
+        redirect(`/auth/login?next=/student/courses/${course}`);
+
+    }
+
     redirect("/welcome");
 
 }
+
+

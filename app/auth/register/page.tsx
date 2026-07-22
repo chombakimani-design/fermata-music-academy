@@ -2,7 +2,9 @@ import Logo from "@/components/branding/Logo";
 import { register } from "./actions/register";
 
 
-export default function RegisterPage() {
+export default async function RegisterPage({ searchParams }: { searchParams: Promise<{ course?: string }> }) {
+
+    const { course } = await searchParams;
 
     return (
 
@@ -42,8 +44,13 @@ export default function RegisterPage() {
 
                 <form
                     action={register}
-                    className="space-y-5"
-                >
+                    className="space-y-5">
+
+                    <input
+                        type="hidden"
+                        name="course"
+                        value={course ?? ""}
+                    />
 
 
 
@@ -131,3 +138,6 @@ export default function RegisterPage() {
     );
 
 }
+
+
+

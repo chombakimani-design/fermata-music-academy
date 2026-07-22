@@ -14,6 +14,10 @@ export default async function Home() {
 
     const supabase = await createClient();
 
+    const {
+        data: { user }
+    } = await supabase.auth.getUser();
+
     const { data } = await supabase
         .from("courses")
         .select("*")
@@ -39,7 +43,7 @@ export default async function Home() {
             <div className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
 
             <section id="courses">
-                <Courses courses={courses} />
+                <Courses courses={courses} user={user} />
             </section>
 
             <div className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
@@ -61,4 +65,7 @@ export default async function Home() {
         </main>
     );
 }
+
+
+
 

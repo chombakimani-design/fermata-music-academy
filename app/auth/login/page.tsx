@@ -2,7 +2,7 @@ import Logo from "@/components/branding/Logo";
 import { login } from "./actions/login";
 
 
-export default function LoginPage() {
+export default async function LoginPage({ searchParams }: { searchParams: Promise<{ next?: string }> }) {`r`n`r`n    const { next } = await searchParams;
 
 
     return (
@@ -50,8 +50,7 @@ export default function LoginPage() {
 
                 <form
                     action={login}
-                    className="space-y-5"
-                >
+                    className="space-y-5">`r`n`r`n                    <input`r`n                        type="hidden"`r`n                        name="next"`r`n                        value={next ?? ""}`r`n                    />
 
 
 
@@ -171,3 +170,5 @@ export default function LoginPage() {
     );
 
 }
+
+

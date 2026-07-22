@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 type Course = {
     id: number;
     name: string;
@@ -7,8 +9,10 @@ type Course = {
 
 export default function Courses({
     courses,
+    user,
 }: {
     courses: Course[];
+    user: any;
 }) {
     return (
         <section className="bg-white py-10">
@@ -63,9 +67,7 @@ export default function Courses({
                                         : "Contact Us"}
                                 </span>
 
-                                <button className="rounded-full bg-gradient-to-r from-yellow-400 to-amber-500 px-4 py-2 font-semibold text-white transition hover:bg-amber-600">
-                                    Enrol
-                                </button>
+                                <Link href={user ? `/student/courses/${course.id}` : `/auth/register?course=${course.id}`} className="rounded-full bg-gradient-to-r from-yellow-400 to-amber-500 px-4 py-2 font-semibold text-white transition hover:bg-amber-600">Enrol</Link>
 
                             </div>
 
@@ -80,6 +82,13 @@ export default function Courses({
         </section>
     );
 }
+
+
+
+
+
+
+
 
 
 

@@ -20,6 +20,10 @@ export async function login(formData: FormData) {
         formData.get("password") ?? ""
     );
 
+    const next = String(
+        formData.get("next") ?? ""
+    ).trim();
+
 
     const { data: authEmail, error: profileError } = await supabase
         .rpc(
@@ -53,6 +57,15 @@ export async function login(formData: FormData) {
     }
 
 
+    if (next) {
+
+        redirect(next);
+
+    }
+
     redirect("/student");
 
 }
+
+
+
