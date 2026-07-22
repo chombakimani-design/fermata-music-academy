@@ -6,7 +6,7 @@ export default function Contact() {
 
                 <div className="text-center">
 
-                    <h2 className="text-4xl font-extrabold text-[#0B3C88]">
+                    <h2 className="text-4xl font-extrabold" style={{ color: "#0B3C88" }}>
                         Contact Us
                     </h2>
 
@@ -48,3 +48,4 @@ export default function Contact() {
         </section>
     );
 }
+
