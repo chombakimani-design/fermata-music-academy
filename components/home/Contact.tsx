@@ -1,52 +1,50 @@
-import { Mail, Phone, Music } from "lucide-react";
-
 export default function Contact() {
-  return (
-    <section className="bg-[#0B3C88] text-white py-16">
+    return (
+        <section className="bg-slate-50 py-10">
 
-      <div className="mx-auto max-w-6xl px-6 text-center">
+            <div className="mx-auto max-w-7xl px-6">
 
-        <h2 className="text-5xl font-bold text-[#0B3C88]">
-          Contact Us
-        </h2>
+                <div className="text-center">
 
-<div className="mx-auto mt-5 h-1 w-24 rounded-full bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300"></div>
+                    <h2 className="text-4xl font-extrabold text-[#0B3C88]">
+                        Contact Us
+                    </h2>
 
-        <p className="mt-6 text-xl text-blue-100">
-          We'd love to hear from you.
-        </p>
+                    <p className="mt-3 text-slate-600">
+                        We'd love to hear from you.
+                    </p>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
+                </div>
 
-          <div className="rounded-2xl border p-5 shadow-lg">
-            <Phone className="mx-auto h-10 w-10 text-amber-500"/>
-            <h3 className="mt-6 text-2xl font-bold">WhatsApp</h3>
-            <p className="mt-3 text-blue-100">
-              +254 722 866 836
-            </p>
-          </div>
+                <div className="mt-8 flex flex-wrap items-center justify-center gap-8 rounded-2xl border border-amber-200 bg-white px-8 py-5 shadow">
 
-          <div className="rounded-2xl border p-5 shadow-lg">
-            <Music className="mx-auto h-10 w-10 text-amber-500"/>
-            <h3 className="mt-6 text-2xl font-bold">X</h3>
-            <p className="mt-3 text-blue-100">
-              @fermataAcademy
-            </p>
-          </div>
+                    <a
+                        href="https://wa.me/254722866836"
+                        target="_blank"
+                        className="font-semibold text-slate-700 transition hover:text-green-600"
+                    >
+                        📱 WhatsApp: +254 722 866 836
+                    </a>
 
-          <div className="rounded-2xl border p-5 shadow-lg">
-            <Mail className="mx-auto h-10 w-10 text-amber-500"/>
-            <h3 className="mt-6 text-2xl font-bold">Email</h3>
-            <p className="mt-3 text-blue-100 break-all">
-              fermatamusicacademy@gmail.com
-            </p>
-          </div>
+                    <a
+                        href="https://x.com/fermataAcademy"
+                        target="_blank"
+                        className="font-semibold text-slate-700 transition hover:text-[#1DA1F2]"
+                    >
+                        ✖ @fermataAcademy
+                    </a>
 
-        </div>
+                    <a
+                        href="mailto:fermatamusicacademy@gmail.com"
+                        className="font-semibold text-slate-700 transition hover:text-amber-600"
+                    >
+                        ✉ fermatamusicacademy@gmail.com
+                    </a>
 
-      </div>
+                </div>
 
-    </section>
-  );
+            </div>
+
+        </section>
+    );
 }
-
