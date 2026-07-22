@@ -55,21 +55,18 @@ export default function Hero() {
 
                 </div>
 
-                <div className="mt-8 flex flex-wrap justify-center gap-8">
+                <div className="mt-12 grid w-full max-w-5xl grid-cols-1 gap-5 md:grid-cols-3">
 
-                    <div>
-                        <h3 className="text-2xl font-bold text-amber-400">7+</h3>
-                        <p>Professional Courses</p>
+                    <div className="rounded-2xl border border-amber-400/50 bg-black/35 px-8 py-6 shadow-2xl backdrop-blur-md"><h3 className="text-6xl font-extrabold text-amber-300 drop-shadow-lg">7+</h3>
+                        <p className="mt-3 text-lg font-semibold uppercase tracking-wider text-white">Professional Courses</p>
                     </div>
 
-                    <div>
-                        <h3 className="text-2xl font-bold text-amber-400">ABRSM</h3>
-                        <p>International Preparation</p>
+                    <div className="rounded-2xl border border-amber-400/50 bg-black/35 px-8 py-6 shadow-2xl backdrop-blur-md"><h3 className="text-5xl font-extrabold text-amber-300 drop-shadow-lg">ABRSM</h3>
+                        <p className="mt-3 text-lg font-semibold uppercase tracking-wider text-white">International Preparation</p>
                     </div>
 
-                    <div>
-                        <h3 className="text-2xl font-bold text-amber-400">All Ages</h3>
-                        <p>Children & Adults</p>
+                    <div className="rounded-2xl border border-amber-400/50 bg-black/35 px-8 py-6 shadow-2xl backdrop-blur-md"><h3 className="text-5xl font-extrabold text-amber-300 drop-shadow-lg">All Ages</h3>
+                        <p className="mt-3 text-lg font-semibold uppercase tracking-wider text-white">Children & Adults</p>
                     </div>
 
                 </div>
@@ -79,4 +76,5 @@ export default function Hero() {
         </section>
     );
 }
+
 
