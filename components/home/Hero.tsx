@@ -2,96 +2,74 @@ import Link from "next/link";
 
 export default function Hero() {
     return (
-        <section className="relative overflow-hidden bg-gradient-to-br from-[#0B3C88] via-[#1457B8] to-[#0A234F] text-white">
+        <section className="relative min-h-[90vh] overflow-hidden text-white">
 
-            <div className="absolute inset-0 opacity-10">
-                <div className="absolute -left-20 top-20 h-72 w-72 rounded-full bg-amber-400 blur-3xl"></div>
-                <div className="absolute right-0 bottom-0 h-96 w-96 rounded-full bg-white blur-3xl"></div>
-            </div>
+            <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{
+                    backgroundImage: "url('/images/hero-music.png')",
+                }}
+            />
 
-            <div className="relative mx-auto grid min-h-[88vh] max-w-7xl items-center gap-16 px-6 py-20 lg:grid-cols-2">
+            <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/75" />
 
-                <div>
+            <div className="relative z-10 mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-center px-6 text-center">
 
-                    <span className="rounded-full bg-amber-400 px-4 py-2 text-sm font-semibold text-slate-900">
-                        Excellence in Music Education
-                    </span>
+                <img
+                    src="/images/fermata-logo.png"
+                    alt="Fermata Music Academy"
+                    className="mb-8 w-44 md:w-60 lg:w-72 drop-shadow-2xl"
+                />
 
-                    <h1 className="mt-8 text-5xl font-extrabold leading-tight md:text-7xl">
-                        Discover.
-                        <br />
-                        Learn.
-                        <br />
-                        Perform.
-                    </h1>
+                <span className="rounded-full bg-amber-400 px-5 py-2 text-sm font-bold tracking-wide text-slate-900">
+                    Excellence in Music Education
+                </span>
 
-                    <p className="mt-8 max-w-xl text-xl leading-9 text-blue-100">
-                        Join Fermata Music Academy and receive professional music
-                        training from experienced tutors in piano, violin, guitar,
-                        recorder, church music, children's music and ABRSM preparation.
-                    </p>
+                <h1 className="mt-8 text-5xl font-extrabold leading-tight md:text-7xl">
+                    Where Passion
+                    <br />
+                    Meets Performance
+                </h1>
 
-                    <div className="mt-10 flex flex-wrap gap-5">
+                <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-200 md:text-2xl">
+                    Discover your musical potential through professional instruction
+                    in piano, violin, voice, guitar, recorder, church music,
+                    children's music and ABRSM examination preparation.
+                </p>
 
-                        <Link
-                            href="/auth/register"
-                            className="rounded-full bg-amber-500 px-8 py-4 font-bold text-white transition hover:scale-105 hover:bg-amber-600"
-                        >
-                            Enrol Today
-                        </Link>
+                <div className="mt-10 flex flex-wrap justify-center gap-5">
 
-                        <a
-                            href="#courses"
-                            className="rounded-full border-2 border-white px-8 py-4 font-bold transition hover:bg-white hover:text-[#0B3C88]"
-                        >
-                            View Courses
-                        </a>
+                    <Link
+                        href="/auth/register"
+                        className="rounded-full bg-amber-500 px-8 py-4 font-bold text-slate-900 transition hover:scale-105 hover:bg-amber-400"
+                    >
+                        Enrol Today
+                    </Link>
 
-                    </div>
-
-                    <div className="mt-12 flex flex-wrap gap-8">
-
-                        <div>
-                            <h3 className="text-3xl font-bold text-amber-400">
-                                7+
-                            </h3>
-                            <p className="text-blue-100">
-                                Professional Courses
-                            </p>
-                        </div>
-
-                        <div>
-                            <h3 className="text-3xl font-bold text-amber-400">
-                                ABRSM
-                            </h3>
-                            <p className="text-blue-100">
-                                International Preparation
-                            </p>
-                        </div>
-
-                        <div>
-                            <h3 className="text-3xl font-bold text-amber-400">
-                                All Ages
-                            </h3>
-                            <p className="text-blue-100">
-                                Children & Adults
-                            </p>
-                        </div>
-
-                    </div>
+                    <a
+                        href="#courses"
+                        className="rounded-full border-2 border-white px-8 py-4 font-bold transition hover:bg-white hover:text-slate-900"
+                    >
+                        View Courses
+                    </a>
 
                 </div>
 
-                <div className="flex justify-center">
+                <div className="mt-14 flex flex-wrap justify-center gap-12">
 
-                    <div className="rounded-3xl bg-white p-8 shadow-2xl">
+                    <div>
+                        <h3 className="text-3xl font-bold text-amber-400">7+</h3>
+                        <p>Professional Courses</p>
+                    </div>
 
-                        <img
-                            src="/images/fermata-logo.png"
-                            alt="Fermata Music Academy"
-                            className="w-[420px]"
-                        />
+                    <div>
+                        <h3 className="text-3xl font-bold text-amber-400">ABRSM</h3>
+                        <p>International Preparation</p>
+                    </div>
 
+                    <div>
+                        <h3 className="text-3xl font-bold text-amber-400">All Ages</h3>
+                        <p>Children & Adults</p>
                     </div>
 
                 </div>
