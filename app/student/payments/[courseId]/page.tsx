@@ -81,6 +81,14 @@ export default async function PaymentPage({
 
         }
 
+        await supabase
+            .from("student_courses")
+            .update({
+                payment_status: "Submitted"
+            })
+            .eq("student_id", user.id)
+            .eq("course_id", course.id);
+
         redirect("/student/payments");
 
     }
@@ -162,3 +170,5 @@ export default async function PaymentPage({
     );
 
 }
+
+
