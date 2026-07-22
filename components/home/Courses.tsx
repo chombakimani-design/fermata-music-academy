@@ -11,7 +11,7 @@ export default function Courses({
     courses: Course[];
 }) {
     return (
-        <section className="bg-white py-24">
+        <section className="bg-white py-14">
 
             <div className="mx-auto max-w-7xl px-6">
 
@@ -21,7 +21,7 @@ export default function Courses({
                         Professional Music Programmes
                     </span>
 
-                    <h2 className="mt-6 text-5xl font-extrabold text-[#0B3C88]">
+                    <h2 className="mt-6 text-4xl font-extrabold text-[#0B3C88]">
                         Our Courses
                     </h2>
 
@@ -40,7 +40,7 @@ export default function Courses({
 
                         <div
                             key={course.id}
-                            className="group rounded-3xl border-2 border-amber-300 bg-white p-8 shadow-lg transition duration-300 hover:-translate-y-3 hover:border-yellow-500 hover:shadow-2xl"
+                            className="group rounded-3xl border-2 border-amber-300 bg-white p-5 shadow-lg transition duration-300 hover:-translate-y-3 hover:border-yellow-500 hover:shadow-2xl"
                         >
 
                             <div className="mb-6 inline-flex rounded-full bg-gradient-to-r from-yellow-100 to-amber-100 px-4 py-2 text-sm font-bold uppercase tracking-wide text-amber-700">
@@ -80,3 +80,4 @@ export default function Courses({
         </section>
     );
 }
+
