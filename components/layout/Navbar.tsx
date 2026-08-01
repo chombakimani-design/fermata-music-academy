@@ -16,7 +16,7 @@ export default function Navbar() {
 
                 <Logo />
 
-                <nav className="hidden items-center gap-8 lg:flex">
+                <nav className="hidden items-center gap-4 xl:gap-8 lg:flex">
 
                     <Link href="/" className="font-medium hover:text-brand-primary">
                         Home
@@ -57,7 +57,7 @@ export default function Navbar() {
 
                     <Link
                         href="/auth/register"
-                        className="rounded-full bg-brand-primary px-6 py-3 font-semibold text-white hover:opacity-90"
+                        className="rounded-full bg-brand-primary px-4 py-2 font-semibold text-white hover:opacity-90"
                     >
                         Enrol Now
                     </Link>
