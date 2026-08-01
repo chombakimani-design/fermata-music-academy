@@ -1,6 +1,12 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend() {
+  if (!process.env.RESEND_API_KEY) {
+    throw new Error("RESEND_API_KEY is missing.");
+  }
+
+  return new Resend(process.env.RESEND_API_KEY);
+}
 
 type ReceiptEmail = {
   to: string;
@@ -19,9 +25,8 @@ export async function sendReceiptEmail({
   course,
   receiptUrl,
 }: ReceiptEmail) {
-  if (!process.env.RESEND_API_KEY) {
-    throw new Error("RESEND_API_KEY is missing.");
-  }
+
+  const resend = getResend();
 
   const from =
     process.env.RESEND_FROM ??
@@ -44,10 +49,12 @@ export async function sendReceiptEmail({
             <td><strong>Receipt No.</strong></td>
             <td>${receiptNumber}</td>
           </tr>
+
           <tr>
             <td><strong>Course</strong></td>
             <td>${course}</td>
           </tr>
+
           <tr>
             <td><strong>Amount</strong></td>
             <td>KES ${amount.toLocaleString()}</td>
