@@ -9,6 +9,8 @@ export async function POST(req: NextRequest) {
 
         const token = await getTumaToken();
 
+        console.log("TUMA TOKEN START:", token.substring(0, 20));
+
         const response = await fetch(`${BASE_URL}/payment/stk-push`, {
             method: "POST",
             headers: {
@@ -23,11 +25,21 @@ export async function POST(req: NextRequest) {
             }),
         });
 
-        const result = await response.json();
+        const text = await response.text();
 
-        return NextResponse.json(result, {
-            status: response.status,
-        });
+        console.log("TUMA STATUS:", response.status);
+        console.log("TUMA RESPONSE:", text);
+
+        return NextResponse.json(
+            {
+                status: response.status,
+                response: text,
+            },
+            {
+                status: response.status,
+            }
+        );
+
     } catch (error) {
         console.error(error);
 
