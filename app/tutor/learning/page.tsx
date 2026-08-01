@@ -2,7 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 
 
-export default async function TutorStudentsPage(){
+export default async function TutorLearningPage(){
 
 
     const supabase = await createClient();
@@ -18,17 +18,14 @@ export default async function TutorStudentsPage(){
     const {data:students}=await supabase
         .from("tutor_students")
         .select(`
-            id,
             student_id,
-            assigned_at,
             profiles(
                 first_name,
                 last_name,
                 student_id
             )
         `)
-        .eq("tutor_id",user?.id)
-        .order("assigned_at",{ascending:false});
+        .eq("tutor_id",user?.id);
 
 
 
@@ -37,7 +34,7 @@ export default async function TutorStudentsPage(){
         <main className="min-h-screen bg-brand-light p-6">
 
 
-            <div className="mx-auto max-w-5xl">
+            <div className="mx-auto max-w-6xl">
 
 
                 <div className="rounded-2xl border border-brand-gold bg-white p-8 shadow-xl">
@@ -45,14 +42,14 @@ export default async function TutorStudentsPage(){
 
                     <h1 className="text-4xl font-bold text-brand-dark">
 
-                        My Students
+                        Learning Progress Dashboard
 
                     </h1>
 
 
                     <p className="mt-3 text-slate-600">
 
-                        View assigned students and manage learning progress.
+                        Track student lesson completion and course progress.
 
                     </p>
 
@@ -67,11 +64,12 @@ export default async function TutorStudentsPage(){
 
                     {students?.map((student:any)=>(
 
+
                         <div
 
-                            key={student.id}
+                            key={student.student_id}
 
-                            className="rounded-2xl border border-brand-gold bg-white p-6 shadow"
+                            className="rounded-2xl border border-brand-gold bg-white p-8 shadow"
 
                         >
 
@@ -88,19 +86,9 @@ export default async function TutorStudentsPage(){
 
                             <p className="mt-2 text-slate-600">
 
-                                Student ID:
+                                ID:
                                 {" "}
                                 {student.profiles?.student_id}
-
-                            </p>
-
-
-
-                            <p className="mt-2 text-sm text-slate-500">
-
-                                Assigned:
-                                {" "}
-                                {new Date(student.assigned_at).toLocaleDateString()}
 
                             </p>
 
@@ -110,14 +98,13 @@ export default async function TutorStudentsPage(){
 
                                 href={`/tutor/students/${student.student_id}`}
 
-                                className="mt-5 inline-block rounded-xl bg-brand-primary px-5 py-3 font-bold text-white hover:bg-brand-dark"
+                                className="mt-5 inline-block rounded-xl bg-brand-primary px-6 py-3 font-bold text-white hover:bg-brand-dark"
 
                             >
 
-                                Open Student
+                                View Progress Report
 
                             </Link>
-
 
 
                         </div>
@@ -136,7 +123,6 @@ export default async function TutorStudentsPage(){
                         </div>
 
                     )}
-
 
 
                 </div>

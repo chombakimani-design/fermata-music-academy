@@ -1,20 +1,25 @@
 import Link from "next/link";
 import Logo from "@/components/branding/Logo";
+import CourseOutline from "@/components/student/CourseOutline";
+import CourseProgress from "@/components/student/CourseProgress";
+import CourseResources from "@/components/student/CourseResources";
+import CourseCompletion from "@/components/student/CourseCompletion";
+import CertificateStatus from "@/components/student/CertificateStatus";
+import CertificateLink from "@/components/student/CertificateLink";
 import { createClient } from "@/lib/supabase/server";
-import { getStudentCourses } from "@/lib/student/student";
 import { redirect } from "next/navigation";
+import { getNextLesson } from "@/lib/student/learning";
 
 
-export default async function MyCoursesPage() {
+export default async function MyCoursesPage(){
 
 
     const supabase = await createClient();
 
 
+
     const {
-        data:{
-            user
-        }
+        data:{user}
     } = await supabase.auth.getUser();
 
 
@@ -27,7 +32,17 @@ export default async function MyCoursesPage() {
 
 
 
-    const courses = await getStudentCourses(user.id);
+    const {data:courses}=await supabase
+        .from("student_courses")
+        .select(`
+            id,
+            course_id,
+            courses(
+                course_name,
+                level
+            )
+        `)
+        .eq("student_id",user.id);
 
 
 
@@ -36,7 +51,7 @@ export default async function MyCoursesPage() {
         <main className="min-h-screen bg-brand-light p-6">
 
 
-            <div className="mx-auto max-w-5xl">
+            <div className="mx-auto max-w-6xl">
 
 
                 <div className="rounded-2xl border border-brand-gold bg-white p-8 shadow-xl">
@@ -45,14 +60,15 @@ export default async function MyCoursesPage() {
                     <div className="flex justify-center">
 
                         <Logo
+
                             width={180}
+
                             height={80}
+
                         />
 
                     </div>
 
-
-                    <div className="mt-5 h-px bg-brand-gold"/>
 
 
                     <h1 className="mt-8 text-4xl font-bold text-brand-dark">
@@ -62,9 +78,10 @@ export default async function MyCoursesPage() {
                     </h1>
 
 
+
                     <p className="mt-3 text-slate-600">
 
-                        Your enrolled music programmes at Fermata Music Academy.
+                        Continue learning and track your progress.
 
                     </p>
 
@@ -73,135 +90,156 @@ export default async function MyCoursesPage() {
 
 
 
-                <div className="mt-8 space-y-6">
+
+                <div className="mt-8 space-y-8">
+
+
+                    {courses?.map(async(item:any)=>{
+
+
+                        const nextLesson = await getNextLesson(
+
+                            user.id,
+
+                            item.course_id
+
+                        );
 
 
 
-                    {courses?.map((item:any)=>(
+                        return (
+
+                            <div
+
+                                key={item.id}
+
+                                className="rounded-2xl border border-brand-gold bg-white p-8 shadow-lg"
+
+                            >
 
 
-                        <div
-                            key={item.id}
-                            className="rounded-2xl border border-brand-gold bg-white p-8 shadow-lg"
-                        >
+                                <h2 className="text-2xl font-bold text-brand-primary">
 
+                                    {item.courses?.course_name}
 
-                            <h2 className="text-2xl font-bold text-brand-primary">
-
-                                {item.courses?.[0]?.course_name}
-
-                            </h2>
-
-
-                            <p className="mt-3 text-slate-700">
-
-                                {item.courses?.[0]?.description}
-
-                            </p>
+                                </h2>
 
 
 
-                            <div className="mt-6 grid gap-4 md:grid-cols-2">
+                                <p className="mt-2 text-slate-600">
 
+                                    Level:
+                                    {" "}
+                                    {item.courses?.level}
 
-                                <div className="rounded-xl bg-brand-light p-4">
-
-                                    <p className="text-sm text-slate-500">
-                                        Level
-                                    </p>
-
-                                    <p className="font-bold text-brand-dark">
-                                        {item.courses?.[0]?.level}
-                                    </p>
-
-                                </div>
+                                </p>
 
 
 
-                                <div className="rounded-xl bg-brand-light p-4">
 
-                                    <p className="text-sm text-slate-500">
-                                        Fee
-                                    </p>
+                                <CourseProgress
 
-                                    <p className="font-bold text-brand-dark">
-                                        KES {item.courses?.[0]?.fee}
-                                    </p>
+                                    studentId={user.id}
 
-                                </div>
+                                    courseId={item.course_id}
+
+                                />
 
 
 
-                                <div className="rounded-xl bg-brand-light p-4">
 
-                                    <p className="text-sm text-slate-500">
-                                        Tutor
-                                    </p>
+                                <CourseCompletion
 
-                                    <p className="font-bold text-brand-dark">
+                                    studentId={user.id}
 
-                                        {item.courses?.[0]?.tutor_courses?.[0]?.profiles?.[0]?.first_name}
-                                        {" "}
-                                        {item.courses?.[0]?.tutor_courses?.[0]?.profiles?.[0]?.last_name}
+                                    courseId={item.course_id}
 
-                                    </p>
-
-                                </div>
+                                />
 
 
 
-                                <div className="rounded-xl bg-brand-light p-4">
 
-                                    <p className="text-sm text-slate-500">
-                                        Payment Status
-                                    </p>
+                                <CertificateStatus
 
-                                    <p className="font-bold text-brand-dark">
-                                        {item.payment_status}
-                                    </p>
+                                    studentId={user.id}
+
+                                    courseId={item.course_id}
+
+                                />
+
+
+
+
+                                <CertificateLink
+
+                                    studentId={user.id}
+
+                                    courseId={item.course_id}
+
+                                />
+
+
+
+
+                                <CourseOutline
+
+                                    courseId={item.course_id}
+
+                                />
+
+
+
+
+                                <CourseResources
+
+                                    courseId={item.course_id}
+
+                                />
+
+
+
+
+                                <div className="mt-8">
+
+
+                                    <Link
+
+                                        href={
+                                            nextLesson
+                                            ? `/student/lessons/${nextLesson.id}`
+                                            : "#"
+                                        }
+
+                                        className="inline-block rounded-xl bg-brand-primary px-6 py-3 font-bold text-white hover:bg-brand-dark"
+
+                                    >
+
+                                        Continue Learning
+
+                                    </Link>
+
 
                                 </div>
 
 
                             </div>
 
+                        );
 
 
-                            <Link
-
-                                href="/student/payments"
-
-                                className="mt-6 inline-block rounded-xl bg-brand-primary px-6 py-3 font-bold text-white"
-
-                            >
-
-                                View Payments
-
-                            </Link>
-
-
-                        </div>
-
-
-                    ))}
+                    })}
 
 
 
+                    {(!courses || courses.length===0) && (
 
-                    {courses?.length===0 && (
+                        <div className="rounded-xl bg-white p-10 text-center shadow">
 
-                        <div className="rounded-xl border border-brand-gold bg-white p-8 text-center shadow">
-
-                            <p className="text-lg font-semibold text-brand-dark">
-
-                                No courses enrolled yet.
-
-                            </p>
+                            No courses assigned yet.
 
                         </div>
 
                     )}
-
 
 
                 </div>
@@ -214,10 +252,4 @@ export default async function MyCoursesPage() {
 
     );
 
-
 }
-
-
-
-
-
