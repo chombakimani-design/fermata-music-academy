@@ -16,20 +16,15 @@ export default async function CertificatePage({
 
     const {courseId}=await params;
 
-    const id = Number(courseId);
+    const id=Number(courseId);
 
 
-
-    const supabase = await createClient();
-
+    const supabase=await createClient();
 
 
     const {
-
         data:{user}
-
-    } = await supabase.auth.getUser();
-
+    }=await supabase.auth.getUser();
 
 
     if(!user){
@@ -39,15 +34,13 @@ export default async function CertificatePage({
     }
 
 
-
-    const completed = await checkCourseCompletion(
+    const completed=await checkCourseCompletion(
 
         user.id,
 
         id
 
     );
-
 
 
     if(!completed){
@@ -57,13 +50,11 @@ export default async function CertificatePage({
     }
 
 
-
     const {data:course}=await supabase
         .from("courses")
         .select("course_name")
         .eq("id",id)
         .single();
-
 
 
     const {data:profile}=await supabase
@@ -73,8 +64,7 @@ export default async function CertificatePage({
         .single();
 
 
-
-    const fullName =
+    const fullName=
 
         `${profile?.first_name ?? ""} ${profile?.last_name ?? ""}`.trim();
 
@@ -82,13 +72,13 @@ export default async function CertificatePage({
 
     return (
 
-        <main className="min-h-screen bg-brand-light p-8">
+        <main className="min-h-screen bg-brand-light p-4 md:p-8">
 
 
-            <div className="mx-auto max-w-4xl rounded-2xl border-4 border-brand-gold bg-white p-12 shadow-xl">
+            <div className="mx-auto max-w-4xl rounded-2xl border-4 border-brand-gold bg-white p-6 shadow-xl md:p-12">
 
 
-                <h1 className="text-center text-5xl font-bold text-brand-dark">
+                <h1 className="text-center text-3xl font-bold text-brand-dark md:text-5xl">
 
                     Certificate of Completion
 
@@ -104,7 +94,7 @@ export default async function CertificatePage({
 
 
 
-                <h2 className="mt-4 text-center text-4xl font-bold text-brand-primary">
+                <h2 className="mt-4 text-center text-3xl font-bold text-brand-primary md:text-4xl">
 
                     {fullName}
 
@@ -120,7 +110,7 @@ export default async function CertificatePage({
 
 
 
-                <h3 className="mt-3 text-center text-3xl font-bold">
+                <h3 className="mt-3 text-center text-2xl font-bold md:text-3xl">
 
                     {course?.course_name}
 
@@ -151,7 +141,7 @@ export default async function CertificatePage({
 
                         {({loading})=>(
 
-                            <button className="rounded-xl bg-brand-primary px-8 py-3 font-bold text-white hover:bg-brand-dark">
+                            <button className="w-full rounded-xl bg-brand-primary px-8 py-3 font-bold text-white hover:bg-brand-dark sm:w-auto">
 
                                 {loading
 

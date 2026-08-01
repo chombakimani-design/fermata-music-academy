@@ -12,12 +12,15 @@ export default function StudentLayout({
         <div className="min-h-screen bg-brand-light md:flex">
 
 
-            <aside className="w-full bg-brand-dark p-6 text-white md:min-h-screen md:w-72">
+            <aside className="w-full bg-brand-dark p-5 text-white md:min-h-screen md:w-72">
 
 
                 <div className="flex flex-col items-center">
 
-                    <Logo width={170} height={75} />
+                    <Logo
+                        width={170}
+                        height={75}
+                    />
 
                     <div className="mt-4 h-px w-full bg-brand-gold" />
 
@@ -29,44 +32,102 @@ export default function StudentLayout({
 
 
 
-                <nav className="mt-8 space-y-3">
+                <nav className="mt-8 grid gap-2">
 
 
                     <Link
                         href="/student/dashboard"
-                        className="block rounded-lg p-3 font-semibold hover:bg-brand-primary"
+                        className="rounded-lg p-3 font-semibold hover:bg-brand-primary"
                     >
                         🏠 Dashboard
                     </Link>
 
 
+
+                    <Link
+                        href="/student/courses"
+                        className="rounded-lg p-3 font-semibold hover:bg-brand-primary"
+                    >
+                        📚 Available Courses
+                    </Link>
+
+
+
                     <Link
                         href="/student/my-courses"
-                        className="block rounded-lg p-3 font-semibold hover:bg-brand-primary"
+                        className="rounded-lg p-3 font-semibold hover:bg-brand-primary"
                     >
-                        📚 My Courses
+                        🎓 My Courses
                     </Link>
+
+
+
+                    <Link
+                        href="/student/learning"
+                        className="rounded-lg p-3 font-semibold hover:bg-brand-primary"
+                    >
+                        📖 Learning Progress
+                    </Link>
+
+
+
+                    <Link
+                        href="/student/practice"
+                        className="rounded-lg p-3 font-semibold hover:bg-brand-primary"
+                    >
+                        🎼 Practice Centre
+                    </Link>
+
+
+
+                    <Link
+                        href="/student/practice/history"
+                        className="rounded-lg p-3 font-semibold hover:bg-brand-primary"
+                    >
+                        📊 Practice History
+                    </Link>
+
+
+
+                    <Link
+                        href="/student/quizzes"
+                        className="rounded-lg p-3 font-semibold hover:bg-brand-primary"
+                    >
+                        📝 Quizzes
+                    </Link>
+
 
 
                     <Link
                         href="/student/payments"
-                        className="block rounded-lg p-3 font-semibold hover:bg-brand-primary"
+                        className="rounded-lg p-3 font-semibold hover:bg-brand-primary"
                     >
                         💳 Submit Payment
                     </Link>
 
 
+
                     <Link
                         href="/student/payments/history"
-                        className="block rounded-lg p-3 font-semibold hover:bg-brand-primary"
+                        className="rounded-lg p-3 font-semibold hover:bg-brand-primary"
                     >
                         🧾 Payment History
                     </Link>
 
 
+
+                    <Link
+                        href="/student/receipts"
+                        className="rounded-lg p-3 font-semibold hover:bg-brand-primary"
+                    >
+                        📄 Receipts
+                    </Link>
+
+
+
                     <Link
                         href="/auth/logout"
-                        className="block rounded-lg p-3 font-semibold hover:bg-brand-primary"
+                        className="rounded-lg p-3 font-semibold hover:bg-brand-primary"
                     >
                         🚪 Logout
                     </Link>
@@ -79,7 +140,7 @@ export default function StudentLayout({
 
 
 
-            <section className="flex-1 p-8">
+            <section className="flex-1 overflow-x-hidden p-4 md:p-8">
 
                 {children}
 

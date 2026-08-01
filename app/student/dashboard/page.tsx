@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Logo from "@/components/branding/Logo";
 import LearningSummary from "@/components/student/LearningSummary";
 import { createClient } from "@/lib/supabase/server";
@@ -8,7 +9,6 @@ export default async function StudentDashboardPage(){
 
 
     const supabase = await createClient();
-
 
 
     const {
@@ -39,13 +39,14 @@ export default async function StudentDashboardPage(){
 
     return (
 
-        <main className="min-h-screen bg-brand-light p-6">
+        <main className="min-h-screen bg-brand-light p-4 md:p-6">
 
 
             <div className="mx-auto max-w-6xl">
 
 
-                <div className="rounded-2xl border border-brand-gold bg-white p-8 shadow-xl">
+
+                <div className="rounded-2xl border border-brand-gold bg-white p-5 shadow-xl md:p-8">
 
 
                     <div className="flex justify-center">
@@ -59,9 +60,9 @@ export default async function StudentDashboardPage(){
 
 
 
-                    <h1 className="mt-8 text-4xl font-bold text-brand-dark">
+                    <h1 className="mt-8 text-3xl font-bold text-brand-dark md:text-4xl">
 
-                        Welcome {profile?.first_name}
+                        Welcome {profile?.first_name || "Student"}
 
                     </h1>
 
@@ -79,7 +80,7 @@ export default async function StudentDashboardPage(){
 
                         Student ID:
                         {" "}
-                        {profile?.student_id}
+                        {profile?.student_id || "-"}
 
                     </p>
 
@@ -98,89 +99,151 @@ export default async function StudentDashboardPage(){
 
 
 
-                <div className="mt-8 grid gap-6 md:grid-cols-3">
+
+                <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
 
-                    <a
+
+                    <Link
 
                         href="/student/my-courses"
 
-                        className="rounded-2xl border border-brand-gold bg-white p-8 shadow hover:bg-brand-light"
+                        className="rounded-2xl border border-brand-gold bg-white p-5 shadow transition hover:bg-brand-light md:p-8"
 
                     >
 
                         <h2 className="text-xl font-bold text-brand-primary">
 
-                            My Courses
+                            🎓 My Courses
 
                         </h2>
 
 
-                        <p className="mt-2 text-slate-600">
+                        <p className="mt-2 text-sm text-slate-600 md:text-base">
 
-                            Continue learning and track progress.
+                            Continue learning and track your enrolled courses.
 
                         </p>
 
 
-                    </a>
+                    </Link>
 
 
 
 
-                    <a
+
+                    <Link
 
                         href="/student/learning"
 
-                        className="rounded-2xl border border-brand-gold bg-white p-8 shadow hover:bg-brand-light"
+                        className="rounded-2xl border border-brand-gold bg-white p-5 shadow transition hover:bg-brand-light md:p-8"
 
                     >
 
                         <h2 className="text-xl font-bold text-brand-primary">
 
-                            Learning Progress
+                            📖 Learning Progress
 
                         </h2>
 
 
-                        <p className="mt-2 text-slate-600">
+                        <p className="mt-2 text-sm text-slate-600 md:text-base">
 
-                            View completed lessons.
+                            View lessons completed and monitor your progress.
 
                         </p>
 
 
-                    </a>
+                    </Link>
 
 
 
 
-                    <a
+
+                    <Link
+
+                        href="/student/practice"
+
+                        className="rounded-2xl border border-brand-gold bg-white p-5 shadow transition hover:bg-brand-light md:p-8"
+
+                    >
+
+                        <h2 className="text-xl font-bold text-brand-primary">
+
+                            🎼 Practice Centre
+
+                        </h2>
+
+
+                        <p className="mt-2 text-sm text-slate-600 md:text-base">
+
+                            Practise music knowledge questions and improve skills.
+
+                        </p>
+
+
+                    </Link>
+
+
+
+
+
+                    <Link
+
+                        href="/student/payments"
+
+                        className="rounded-2xl border border-brand-gold bg-white p-5 shadow transition hover:bg-brand-light md:p-8"
+
+                    >
+
+                        <h2 className="text-xl font-bold text-brand-primary">
+
+                            💳 Payments
+
+                        </h2>
+
+
+                        <p className="mt-2 text-sm text-slate-600 md:text-base">
+
+                            Submit and track your course payments.
+
+                        </p>
+
+
+                    </Link>
+
+
+
+
+
+                    <Link
 
                         href="/student/receipts"
 
-                        className="rounded-2xl border border-brand-gold bg-white p-8 shadow hover:bg-brand-light"
+                        className="rounded-2xl border border-brand-gold bg-white p-5 shadow transition hover:bg-brand-light md:p-8"
 
                     >
 
                         <h2 className="text-xl font-bold text-brand-primary">
 
-                            Receipts
+                            📄 Receipts
 
                         </h2>
 
 
-                        <p className="mt-2 text-slate-600">
+                        <p className="mt-2 text-sm text-slate-600 md:text-base">
 
-                            Access payment receipts.
+                            Access your payment receipts.
 
                         </p>
 
 
-                    </a>
+                    </Link>
+
 
 
                 </div>
+
 
 
             </div>

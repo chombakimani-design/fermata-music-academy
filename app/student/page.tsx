@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { getStudentProfile, getStudentCourses, getTutorAssignment } from "@/lib/student/student";
+import { getStudentProfile, getStudentCourses } from "@/lib/student/student";
 import { redirect } from "next/navigation";
 
 
@@ -63,13 +63,14 @@ export default async function StudentPage() {
 
     return (
 
-        <main className="mx-auto max-w-5xl space-y-8">
+        <main className="mx-auto w-full max-w-5xl space-y-6 p-4 md:space-y-8 md:p-6">
 
 
-            <div className="rounded-2xl border border-brand-gold bg-white p-8 shadow-xl">
+
+            <div className="rounded-2xl border border-brand-gold bg-white p-5 shadow-xl md:p-8">
 
 
-                <h1 className="text-4xl font-bold text-brand-dark">
+                <h1 className="text-3xl font-bold text-brand-dark md:text-4xl">
 
                     🎵 Fermata Music Academy
 
@@ -79,9 +80,9 @@ export default async function StudentPage() {
                 <div className="mt-4 h-1 w-32 rounded-full bg-brand-gold"/>
 
 
-                <p className="mt-5 text-xl text-slate-700">
+                <p className="mt-5 text-lg text-slate-700 md:text-xl">
 
-                    Welcome {profile?.first_name} {profile?.last_name}
+                    Welcome {profile?.first_name || "Student"} {profile?.last_name || ""}
 
                 </p>
 
@@ -90,10 +91,11 @@ export default async function StudentPage() {
 
 
 
-            <div className="rounded-2xl border border-brand-gold bg-white p-8 shadow">
+
+            <div className="rounded-2xl border border-brand-gold bg-white p-5 shadow md:p-8">
 
 
-                <h2 className="text-2xl font-bold text-brand-dark">
+                <h2 className="text-xl font-bold text-brand-dark md:text-2xl">
 
                     Student Profile
 
@@ -106,14 +108,14 @@ export default async function StudentPage() {
                     <p>
                         <strong>Student ID:</strong>{" "}
                         <span className="font-bold text-brand-primary">
-                            {profile?.student_id}
+                            {profile?.student_id || "-"}
                         </span>
                     </p>
 
 
                     <p>
                         <strong>Phone:</strong>{" "}
-                        {profile?.phone}
+                        {profile?.phone || "-"}
                     </p>
 
 
@@ -133,14 +135,15 @@ export default async function StudentPage() {
 
 
 
-            <div className="mt-8 grid gap-8 md:grid-cols-2">
+
+            <div className="grid gap-5 md:grid-cols-2">
 
 
 
-                <section className="rounded-2xl border border-brand-gold bg-white p-8 shadow">
+                <section className="rounded-2xl border border-brand-gold bg-white p-5 shadow md:p-8">
 
 
-                    <h2 className="text-2xl font-bold text-brand-dark">
+                    <h2 className="text-xl font-bold text-brand-dark md:text-2xl">
 
                         My Tutor
 
@@ -149,6 +152,7 @@ export default async function StudentPage() {
 
 
                     {tutorAssignment ? (
+
 
                         <div className="mt-5">
 
@@ -161,7 +165,7 @@ export default async function StudentPage() {
                             </p>
 
 
-                            <p className="mt-2 text-slate-600">
+                            <p className="mt-2 break-all text-slate-600">
 
                                 {tutorAssignment.auth_email}
 
@@ -189,10 +193,11 @@ export default async function StudentPage() {
 
 
 
-                <section className="rounded-2xl border border-brand-gold bg-white p-8 shadow">
+
+                <section className="rounded-2xl border border-brand-gold bg-white p-5 shadow md:p-8">
 
 
-                    <h2 className="text-2xl font-bold text-brand-dark">
+                    <h2 className="text-xl font-bold text-brand-dark md:text-2xl">
 
                         My Courses
 
@@ -210,8 +215,11 @@ export default async function StudentPage() {
 
 
                                 <div
+
                                     key={item.id}
+
                                     className="rounded-xl border border-brand-gold bg-brand-light p-4"
+
                                 >
 
 
@@ -267,43 +275,64 @@ export default async function StudentPage() {
 
 
 
-            <div className="grid gap-6 md:grid-cols-3">
+
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
 
 
                 {[
+
                     [
                         "/student/profile",
-                        "Complete Profile",
-                        "Add your personal information."
+                        "👤 Profile",
+                        "Complete your personal information."
                     ],
+
                     [
                         "/student/my-courses",
-                        "My Courses",
-                        "View your enrolled music courses."
+                        "🎓 Courses",
+                        "View enrolled courses."
                     ],
+
+                    [
+                        "/student/learning",
+                        "📖 Learning",
+                        "Track learning progress."
+                    ],
+
+                    [
+                        "/student/practice",
+                        "🎼 Practice",
+                        "Practise music knowledge."
+                    ],
+
                     [
                         "/student/payments",
-                        "Payments",
-                        "Manage your course payments."
+                        "💳 Payments",
+                        "Manage payments."
                     ]
 
                 ].map(([href,title,text])=>(
 
 
                     <Link
+
                         key={href}
+
                         href={href}
-                        className="rounded-xl border border-brand-gold bg-white p-6 shadow hover:bg-brand-light"
+
+                        className="rounded-xl border border-brand-gold bg-white p-5 shadow transition hover:bg-brand-light"
+
                     >
 
-                        <h3 className="text-xl font-bold text-brand-primary">
+
+                        <h3 className="font-bold text-brand-primary">
 
                             {title}
 
                         </h3>
 
 
-                        <p className="mt-3 text-slate-600">
+                        <p className="mt-3 text-sm text-slate-600">
 
                             {text}
 
@@ -329,9 +358,3 @@ export default async function StudentPage() {
 
 
 }
-
-
-
-
-
-

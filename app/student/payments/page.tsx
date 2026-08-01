@@ -43,6 +43,7 @@ export default async function PaymentsPage() {
 
 
 
+
     async function submitPayment(formData:FormData){
 
         "use server";
@@ -109,6 +110,7 @@ export default async function PaymentsPage() {
 
         }
 
+
         await supabase
             .from("student_courses")
             .update({
@@ -129,135 +131,153 @@ export default async function PaymentsPage() {
 
     return (
 
-        <main className="mx-auto max-w-5xl p-8">
+        <main className="min-h-screen bg-brand-light p-4 md:p-6">
 
 
-            <div className="rounded-2xl border border-brand-gold bg-white p-8 shadow">
-
-
-                <h1 className="text-4xl font-bold text-brand-dark">
-
-                    Payments
-
-                </h1>
-
-
-                <p className="mt-3 text-slate-600">
-
-                    Submit your M-Pesa payment details.
-
-                </p>
-
-
-            </div>
+            <div className="mx-auto max-w-5xl">
 
 
 
-
-            <div className="mt-8 space-y-6">
-
-
-                {courses?.map((item:any)=>(
+                <div className="rounded-2xl border border-brand-gold bg-white p-5 shadow md:p-8">
 
 
-                    <div
-                        key={item.id}
-                        className="rounded-2xl border border-brand-gold bg-white p-8 shadow"
-                    >
+                    <h1 className="text-3xl font-bold text-brand-dark md:text-4xl">
+
+                        Payments
+
+                    </h1>
 
 
-                        <h2 className="text-2xl font-bold text-brand-primary">
+                    <p className="mt-3 text-slate-600">
 
-                            {item.courses?.[0]?.course_name}
+                        Submit your M-Pesa payment details.
 
-                        </h2>
+                    </p>
 
 
-
-                        <p className="mt-2">
-
-                            Amount:
-                            {" "}
-                            KES {item.courses?.[0]?.fee}
-
-                        </p>
+                </div>
 
 
 
 
-                        <p className="mt-2">
 
-                            Current Status:
-                            {" "}
-                            <strong>
-                                {item.payment_status}
-                            </strong>
-
-                        </p>
+                <div className="mt-8 space-y-5">
 
 
+                    {courses?.map((item:any)=>(
 
 
-                        {item.payment_status === "Pending" && (
+                        <div
+                            key={item.id}
+                            className="rounded-2xl border border-brand-gold bg-white p-5 shadow md:p-8"
+                        >
 
 
-                            <form
-                                action={submitPayment}
-                                className="mt-6 space-y-4"
-                            >
+                            <h2 className="text-xl font-bold text-brand-primary md:text-2xl">
 
+                                {item.courses?.[0]?.course_name}
 
-                                <input
-                                    type="hidden"
-                                    name="course_id"
-                                    value={item.course_id}
-                                />
-
-
-                                <input
-                                    type="hidden"
-                                    name="amount"
-                                    value={item.courses?.[0]?.fee}
-                                />
+                            </h2>
 
 
 
-                                <input
 
-                                    name="transaction_reference"
+                            <p className="mt-3 text-slate-700">
 
-                                    required
+                                Amount:
+                                {" "}
+                                <strong>
+                                    KES {item.courses?.[0]?.fee}
+                                </strong>
 
-                                    placeholder="M-Pesa Transaction Code"
-
-                                    className="w-full rounded-lg border p-4"
-
-                                />
-
+                            </p>
 
 
-                                <button
 
-                                    className="rounded-xl bg-brand-primary px-6 py-3 font-bold text-white"
 
+                            <p className="mt-2 text-slate-700">
+
+                                Current Status:
+                                {" "}
+                                <strong>
+                                    {item.payment_status}
+                                </strong>
+
+                            </p>
+
+
+
+
+
+                            {item.payment_status === "Pending" && (
+
+
+                                <form
+                                    action={submitPayment}
+                                    className="mt-6 space-y-4"
                                 >
 
-                                    Submit Payment
-
-                                </button>
 
 
-                            </form>
-
-
-                        )}
+                                    <input
+                                        type="hidden"
+                                        name="course_id"
+                                        value={item.course_id}
+                                    />
 
 
 
-                    </div>
+                                    <input
+                                        type="hidden"
+                                        name="amount"
+                                        value={item.courses?.[0]?.fee}
+                                    />
 
 
-                ))}
+
+
+                                    <input
+
+                                        name="transaction_reference"
+
+                                        required
+
+                                        placeholder="M-Pesa Transaction Code"
+
+                                        className="w-full rounded-lg border p-3 md:p-4"
+
+                                    />
+
+
+
+
+                                    <button
+
+                                        className="w-full rounded-xl bg-brand-primary px-6 py-3 font-bold text-white hover:bg-brand-dark md:w-auto"
+
+                                    >
+
+                                        Submit Payment
+
+                                    </button>
+
+
+
+                                </form>
+
+
+                            )}
+
+
+
+                        </div>
+
+
+                    ))}
+
+
+
+                </div>
 
 
 
@@ -270,6 +290,3 @@ export default async function PaymentsPage() {
 
 
 }
-
-
-

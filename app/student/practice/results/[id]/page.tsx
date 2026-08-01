@@ -17,10 +17,9 @@ export default async function PracticeResultsPage({
     const supabase=await createClient();
 
     const {
-
         data:{user}
-
     }=await supabase.auth.getUser();
+
 
     if(!user){
 
@@ -28,17 +27,14 @@ export default async function PracticeResultsPage({
 
     }
 
+
     const {data:attempt,error:attemptError}=await supabase
-
         .from("practice_attempts")
-
         .select("*")
-
         .eq("id",attemptId)
-
         .eq("student_id",user.id)
-
         .single();
+
 
     if(attemptError || !attempt){
 
@@ -46,10 +42,10 @@ export default async function PracticeResultsPage({
 
     }
 
+
+
     const {data:answers,error:answersError}=await supabase
-
         .from("practice_attempt_answers")
-
         .select(`
             id,
             selected_answer,
@@ -69,8 +65,9 @@ export default async function PracticeResultsPage({
                 difficulty
             )
         `)
-
         .eq("practice_attempt_id",attemptId);
+
+
 
     if(answersError){
 
@@ -78,31 +75,36 @@ export default async function PracticeResultsPage({
 
     }
 
+
+
     return(
 
-        <main className="min-h-screen bg-brand-light p-6">
+        <main className="min-h-screen bg-brand-light p-4 md:p-6">
 
             <div className="mx-auto max-w-5xl">
 
-                <div className="rounded-2xl bg-white p-8 shadow">
 
-                    <h1 className="text-4xl font-bold text-brand-dark">
+                <div className="rounded-2xl bg-white p-5 shadow md:p-8">
+
+
+                    <h1 className="text-3xl font-bold text-brand-dark md:text-4xl">
 
                         Practice Results
 
                     </h1>
 
-                    <div className="mt-8 grid gap-6 md:grid-cols-3">
 
-                        <div className="rounded-xl border p-6">
+
+                    <div className="mt-8 grid gap-4 md:grid-cols-3">
+
+
+                        <div className="rounded-xl border p-5">
 
                             <p className="text-sm text-slate-500">
-
                                 Score
-
                             </p>
 
-                            <p className="mt-2 text-3xl font-bold">
+                            <p className="mt-2 text-2xl font-bold md:text-3xl">
 
                                 {attempt.score} / {attempt.total_marks}
 
@@ -110,15 +112,15 @@ export default async function PracticeResultsPage({
 
                         </div>
 
-                        <div className="rounded-xl border p-6">
+
+
+                        <div className="rounded-xl border p-5">
 
                             <p className="text-sm text-slate-500">
-
                                 Percentage
-
                             </p>
 
-                            <p className="mt-2 text-3xl font-bold">
+                            <p className="mt-2 text-2xl font-bold md:text-3xl">
 
                                 {attempt.percentage}%
 
@@ -126,15 +128,15 @@ export default async function PracticeResultsPage({
 
                         </div>
 
-                        <div className="rounded-xl border p-6">
+
+
+                        <div className="rounded-xl border p-5">
 
                             <p className="text-sm text-slate-500">
-
                                 Performance
-
                             </p>
 
-                            <p className="mt-2 text-3xl font-bold">
+                            <p className="mt-2 text-xl font-bold md:text-3xl">
 
                                 {attempt.percentage>=80
                                     ?"Excellent"
@@ -148,13 +150,20 @@ export default async function PracticeResultsPage({
 
                         </div>
 
+
                     </div>
+
 
                 </div>
 
-                <div className="mt-8 space-y-6">
+
+
+
+                <div className="mt-8 space-y-5">
+
 
                     {answers?.map((answer:any,index:number)=>{
+
 
                         const question=Array.isArray(answer.question_bank)
 
@@ -162,24 +171,33 @@ export default async function PracticeResultsPage({
 
                             : answer.question_bank;
 
+
+
                         return(
+
 
                             <div
                                 key={answer.id}
-                                className="rounded-2xl bg-white p-6 shadow"
+                                className="rounded-2xl bg-white p-5 shadow md:p-6"
                             >
 
-                                <div className="flex items-start justify-between">
 
-                                    <h2 className="text-lg font-bold">
+                                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+
+
+                                    <h2 className="font-bold text-slate-900">
 
                                         {index+1}. {question?.question}
 
                                     </h2>
 
-                                    <span className={answer.is_correct
-                                        ?"rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700"
-                                        :"rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-700"}>
+
+
+                                    <span className={
+                                        answer.is_correct
+                                        ?"rounded-full bg-green-100 px-3 py-1 text-center text-sm font-semibold text-green-700"
+                                        :"rounded-full bg-red-100 px-3 py-1 text-center text-sm font-semibold text-red-700"
+                                    }>
 
                                         {answer.is_correct
                                             ?"Correct"
@@ -187,9 +205,13 @@ export default async function PracticeResultsPage({
 
                                     </span>
 
+
                                 </div>
 
-                                <div className="mt-5 space-y-2">
+
+
+
+                                <div className="mt-5 space-y-2 text-sm md:text-base">
 
                                     {question?.option_a && <p>A. {question.option_a}</p>}
 
@@ -201,74 +223,87 @@ export default async function PracticeResultsPage({
 
                                 </div>
 
-                                <div className="mt-6 grid gap-2 text-sm md:grid-cols-2">
+
+
+
+                                <div className="mt-6 grid gap-3 text-sm md:grid-cols-2">
 
                                     <p>
-
                                         <strong>Your Answer:</strong> {answer.selected_answer}
-
                                     </p>
 
-                                    <p>
 
+                                    <p>
                                         <strong>Correct Answer:</strong> {answer.correct_answer}
-
                                     </p>
 
-                                    <p>
 
+                                    <p>
                                         <strong>Marks:</strong> {answer.marks_awarded} / {question?.marks}
-
                                     </p>
 
-                                    <p>
 
+                                    <p>
                                         <strong>Category:</strong> {question?.category}
-
                                     </p>
+
 
                                     <p>
-
                                         <strong>Difficulty:</strong> {question?.difficulty}
-
                                     </p>
+
 
                                 </div>
 
+
                             </div>
+
 
                         );
 
+
                     })}
+
 
                 </div>
 
-                <div className="mt-10 flex gap-4">
+
+
+
+                <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+
 
                     <Link
                         href="/student/practice/random"
-                        className="rounded-xl bg-brand-primary px-8 py-3 font-bold text-white hover:bg-brand-dark"
+                        className="rounded-xl bg-brand-primary px-8 py-3 text-center font-bold text-white hover:bg-brand-dark"
                     >
 
                         New Random Test
 
                     </Link>
 
+
+
                     <Link
                         href="/student/practice"
-                        className="rounded-xl border border-brand-primary px-8 py-3 font-bold text-brand-primary"
+                        className="rounded-xl border border-brand-primary px-8 py-3 text-center font-bold text-brand-primary"
                     >
 
                         Practice Centre
 
                     </Link>
 
+
                 </div>
 
+
+
             </div>
+
 
         </main>
 
     );
+
 
 }

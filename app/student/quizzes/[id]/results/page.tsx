@@ -15,11 +15,11 @@ export default async function QuizResultsPage({
 
     const supabase=await createClient();
 
+
     const {
-
         data:{user}
-
     }=await supabase.auth.getUser();
+
 
     if(!user){
 
@@ -30,9 +30,7 @@ export default async function QuizResultsPage({
 
 
     const {data:attempt,error:attemptError}=await supabase
-
         .from("lesson_quiz_attempts")
-
         .select(`
             id,
             score,
@@ -40,16 +38,13 @@ export default async function QuizResultsPage({
             passed,
             submitted_at
         `)
-
         .eq("quiz_id",quizId)
-
         .eq("student_id",user.id)
-
         .order("submitted_at",{ascending:false})
-
         .limit(1)
-
         .single();
+
+
 
     if(attemptError || !attempt){
 
@@ -59,10 +54,9 @@ export default async function QuizResultsPage({
 
 
 
+
     const {data:answers,error:answerError}=await supabase
-
         .from("lesson_quiz_answers")
-
         .select(`
             selected_answer,
             is_correct,
@@ -77,8 +71,9 @@ export default async function QuizResultsPage({
                 marks
             )
         `)
-
         .eq("attempt_id",attempt.id);
+
+
 
     if(answerError){
 
@@ -88,91 +83,109 @@ export default async function QuizResultsPage({
 
 
 
+
     return(
 
-        <main className="min-h-screen bg-brand-light p-6">
+        <main className="min-h-screen bg-brand-light p-4 md:p-6">
 
-            <div className="mx-auto max-w-5xl rounded-2xl bg-white p-8 shadow">
+            <div className="mx-auto max-w-5xl">
 
-                <h1 className="text-4xl font-bold text-brand-dark">
 
-                    Quiz Results
+                <div className="rounded-2xl bg-white p-5 shadow md:p-8">
 
-                </h1>
 
-                <div className="mt-8 grid gap-6 md:grid-cols-4">
+                    <h1 className="text-3xl font-bold text-brand-dark md:text-4xl">
 
-                    <div className="rounded-xl border p-6">
+                        Quiz Results
 
-                        <p className="text-sm text-slate-500">
+                    </h1>
 
-                            Score
 
-                        </p>
 
-                        <p className="mt-2 text-3xl font-bold">
+                    <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
-                            {attempt.score}
 
-                        </p>
+                        <div className="rounded-xl border p-5">
+
+                            <p className="text-sm text-slate-500">
+                                Score
+                            </p>
+
+                            <p className="mt-2 text-2xl font-bold md:text-3xl">
+
+                                {attempt.score}
+
+                            </p>
+
+                        </div>
+
+
+
+                        <div className="rounded-xl border p-5">
+
+                            <p className="text-sm text-slate-500">
+                                Percentage
+                            </p>
+
+                            <p className="mt-2 text-2xl font-bold md:text-3xl">
+
+                                {attempt.percentage}%
+
+                            </p>
+
+                        </div>
+
+
+
+                        <div className="rounded-xl border p-5">
+
+                            <p className="text-sm text-slate-500">
+                                Result
+                            </p>
+
+                            <p className={attempt.passed
+                                ?"mt-2 text-2xl font-bold text-green-600 md:text-3xl"
+                                :"mt-2 text-2xl font-bold text-red-600 md:text-3xl"}>
+
+                                {attempt.passed ? "PASS" : "FAIL"}
+
+                            </p>
+
+                        </div>
+
+
+
+                        <div className="rounded-xl border p-5">
+
+                            <p className="text-sm text-slate-500">
+                                Submitted
+                            </p>
+
+                            <p className="mt-2 text-sm font-semibold">
+
+                                {attempt.submitted_at
+                                    ? new Date(attempt.submitted_at).toLocaleString()
+                                    : "-"}
+
+                            </p>
+
+                        </div>
+
+
 
                     </div>
 
-                    <div className="rounded-xl border p-6">
-
-                        <p className="text-sm text-slate-500">
-
-                            Percentage
-
-                        </p>
-
-                        <p className="mt-2 text-3xl font-bold">
-
-                            {attempt.percentage}%
-
-                        </p>
-
-                    </div>
-
-                    <div className="rounded-xl border p-6">
-
-                        <p className="text-sm text-slate-500">
-
-                            Result
-
-                        </p>
-
-                        <p className={attempt.passed ? "mt-2 text-3xl font-bold text-green-600" : "mt-2 text-3xl font-bold text-red-600"}>
-
-                            {attempt.passed ? "PASS" : "FAIL"}
-
-                        </p>
-
-                    </div>
-
-                    <div className="rounded-xl border p-6">
-
-                        <p className="text-sm text-slate-500">
-
-                            Submitted
-
-                        </p>
-
-                        <p className="mt-2 font-semibold">
-
-                            {attempt.submitted_at
-                                ? new Date(attempt.submitted_at).toLocaleString()
-                                : "-"}
-
-                        </p>
-
-                    </div>
 
                 </div>
 
-                <div className="mt-10 space-y-8">
+
+
+
+                <div className="mt-8 space-y-5">
+
 
                     {answers?.map((answer:any,index:number)=>{
+
 
                         const question=Array.isArray(answer.question_bank)
 
@@ -180,20 +193,25 @@ export default async function QuizResultsPage({
 
                             : answer.question_bank;
 
+
+
                         return(
 
                             <div
                                 key={index}
-                                className="rounded-xl border border-slate-200 p-6"
+                                className="rounded-xl border border-slate-200 bg-white p-5 shadow md:p-6"
                             >
 
-                                <h2 className="font-bold">
+
+                                <h2 className="font-bold text-slate-900">
 
                                     {index+1}. {question?.question}
 
                                 </h2>
 
-                                <div className="mt-4 space-y-2">
+
+
+                                <div className="mt-4 space-y-2 text-sm md:text-base">
 
                                     {question?.option_a && <p>A. {question.option_a}</p>}
 
@@ -205,46 +223,61 @@ export default async function QuizResultsPage({
 
                                 </div>
 
-                                <div className="mt-5 grid gap-2 text-sm">
+
+
+
+                                <div className="mt-5 grid gap-3 text-sm md:grid-cols-2">
+
 
                                     <p>
-
                                         <strong>Your Answer:</strong> {answer.selected_answer}
-
                                     </p>
 
-                                    <p>
 
+                                    <p>
                                         <strong>Correct Answer:</strong> {question?.correct_answer}
-
                                     </p>
+
 
                                     <p>
-
                                         <strong>Marks Awarded:</strong> {answer.marks_awarded} / {question?.marks}
+                                    </p>
+
+
+
+                                    <p className={answer.is_correct
+                                        ?"font-bold text-green-600"
+                                        :"font-bold text-red-600"}>
+
+                                        {answer.is_correct
+                                            ?"Correct ✓"
+                                            :"Incorrect ✗"}
 
                                     </p>
 
-                                    <p className={answer.is_correct ? "font-bold text-green-600" : "font-bold text-red-600"}>
-
-                                        {answer.is_correct ? "Correct ✓" : "Incorrect ✗"}
-
-                                    </p>
 
                                 </div>
 
+
                             </div>
+
 
                         );
 
+
                     })}
+
 
                 </div>
 
+
+
             </div>
+
 
         </main>
 
     );
+
 
 }

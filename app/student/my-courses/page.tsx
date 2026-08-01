@@ -48,30 +48,28 @@ export default async function MyCoursesPage(){
 
     return (
 
-        <main className="min-h-screen bg-brand-light p-6">
+        <main className="min-h-screen bg-brand-light p-4 md:p-6">
 
 
             <div className="mx-auto max-w-6xl">
 
 
-                <div className="rounded-2xl border border-brand-gold bg-white p-8 shadow-xl">
+
+                <div className="rounded-2xl border border-brand-gold bg-white p-5 shadow-xl md:p-8">
 
 
                     <div className="flex justify-center">
 
                         <Logo
-
                             width={180}
-
                             height={80}
-
                         />
 
                     </div>
 
 
 
-                    <h1 className="mt-8 text-4xl font-bold text-brand-dark">
+                    <h1 className="mt-8 text-3xl font-bold text-brand-dark md:text-4xl">
 
                         My Courses
 
@@ -91,7 +89,9 @@ export default async function MyCoursesPage(){
 
 
 
-                <div className="mt-8 space-y-8">
+
+                <div className="mt-8 space-y-6">
+
 
 
                     {courses?.map(async(item:any)=>{
@@ -109,16 +109,18 @@ export default async function MyCoursesPage(){
 
                         return (
 
+
                             <div
 
                                 key={item.id}
 
-                                className="rounded-2xl border border-brand-gold bg-white p-8 shadow-lg"
+                                className="rounded-2xl border border-brand-gold bg-white p-5 shadow-lg md:p-8"
 
                             >
 
 
-                                <h2 className="text-2xl font-bold text-brand-primary">
+
+                                <h2 className="text-xl font-bold text-brand-primary md:text-2xl">
 
                                     {item.courses?.course_name}
 
@@ -137,6 +139,7 @@ export default async function MyCoursesPage(){
 
 
 
+
                                 <CourseProgress
 
                                     studentId={user.id}
@@ -144,6 +147,7 @@ export default async function MyCoursesPage(){
                                     courseId={item.course_id}
 
                                 />
+
 
 
 
@@ -159,6 +163,7 @@ export default async function MyCoursesPage(){
 
 
 
+
                                 <CertificateStatus
 
                                     studentId={user.id}
@@ -166,6 +171,7 @@ export default async function MyCoursesPage(){
                                     courseId={item.course_id}
 
                                 />
+
 
 
 
@@ -181,48 +187,75 @@ export default async function MyCoursesPage(){
 
 
 
-                                <CourseOutline
 
-                                    courseId={item.course_id}
-
-                                />
+                                <div className="mt-6 rounded-xl border border-brand-gold bg-brand-light p-4">
 
 
+                                    <h3 className="font-bold text-brand-dark">
+
+                                        Course Content
+
+                                    </h3>
 
 
-                                <CourseResources
+                                    <CourseOutline
 
-                                    courseId={item.course_id}
+                                        courseId={item.course_id}
 
-                                />
-
-
+                                    />
 
 
-                                <div className="mt-8">
+                                    <CourseResources
 
+                                        courseId={item.course_id}
 
-                                    <Link
-
-                                        href={
-                                            nextLesson
-                                            ? `/student/lessons/${nextLesson.id}`
-                                            : "#"
-                                        }
-
-                                        className="inline-block rounded-xl bg-brand-primary px-6 py-3 font-bold text-white hover:bg-brand-dark"
-
-                                    >
-
-                                        Continue Learning
-
-                                    </Link>
+                                    />
 
 
                                 </div>
 
 
+
+
+
+                                <div className="mt-6">
+
+
+                                    {nextLesson ? (
+
+                                        <Link
+
+                                            href={`/student/lessons/${nextLesson.id}`}
+
+                                            className="block rounded-xl bg-brand-primary px-6 py-3 text-center font-bold text-white hover:bg-brand-dark md:inline-block"
+
+                                        >
+
+                                            Continue Learning
+
+                                        </Link>
+
+
+                                    ) : (
+
+
+                                        <span className="text-slate-500">
+
+                                            No available lesson yet.
+
+                                        </span>
+
+
+                                    )}
+
+
+
+                                </div>
+
+
+
                             </div>
+
 
                         );
 
@@ -231,15 +264,32 @@ export default async function MyCoursesPage(){
 
 
 
+
                     {(!courses || courses.length===0) && (
 
-                        <div className="rounded-xl bg-white p-10 text-center shadow">
 
-                            No courses assigned yet.
+                        <div className="rounded-2xl border border-brand-gold bg-white p-10 text-center shadow">
+
+
+                            <h2 className="text-xl font-bold text-brand-dark">
+
+                                No Courses Assigned
+
+                            </h2>
+
+
+                            <p className="mt-3 text-slate-600">
+
+                                Your assigned courses will appear here once enrolled.
+
+                            </p>
+
 
                         </div>
 
+
                     )}
+
 
 
                 </div>

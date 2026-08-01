@@ -11,11 +11,14 @@ export default async function LessonPage({
     params:Promise<{id:string}>
 }){
 
+
     const {id}=await params;
 
     const lessonId=Number(id);
 
+
     const supabase=await createClient();
+
 
 
     const {
@@ -25,11 +28,14 @@ export default async function LessonPage({
     }=await supabase.auth.getUser();
 
 
+
     if(!user){
 
         redirect("/auth/login");
 
     }
+
+
 
 
     const {data:lesson}=await supabase
@@ -63,11 +69,15 @@ export default async function LessonPage({
         .single();
 
 
+
+
     if(!lesson){
 
         redirect("/student/my-courses");
 
     }
+
+
 
 
     const {data:progress}=await supabase
@@ -83,21 +93,29 @@ export default async function LessonPage({
         .maybeSingle();
 
 
+
+
     return(
 
-        <main className="min-h-screen bg-brand-light p-6">
 
-            <div className="mx-auto max-w-5xl rounded-2xl bg-white p-8 shadow">
+        <main className="min-h-screen bg-brand-light p-4 md:p-6">
 
 
-                <h1 className="text-4xl font-bold text-brand-dark">
+            <div className="mx-auto max-w-5xl rounded-2xl border border-brand-gold bg-white p-5 shadow md:p-8">
+
+
+
+                <h1 className="text-3xl font-bold text-brand-dark md:text-4xl">
 
                     {lesson.title}
 
                 </h1>
 
 
+
+
                 {lesson.description && (
+
 
                     <p className="mt-4 text-slate-600">
 
@@ -105,24 +123,66 @@ export default async function LessonPage({
 
                     </p>
 
+
                 )}
+
+
 
 
                 {lesson.content && (
 
-                    <div className="mt-8 whitespace-pre-line text-slate-800">
+
+                    <div className="mt-8 rounded-xl bg-brand-light p-5 whitespace-pre-line text-slate-800 md:p-6">
+
 
                         {lesson.content}
 
+
                     </div>
+
 
                 )}
 
 
-                <div className="mt-10 flex flex-wrap gap-4">
+
+
+                <div className="mt-8 rounded-xl border border-brand-gold p-4">
+
+
+                    <p className="font-bold text-brand-dark">
+
+                        Assessment
+
+                    </p>
+
+
+                    <p className="mt-2 text-sm text-slate-600">
+
+
+                        {lesson.lesson_quizzes?.length > 0
+
+                            ? "A quiz is available after this lesson."
+
+                            : "No quiz available for this lesson."}
+
+
+                    </p>
+
+
+                </div>
+
+
+
+
+
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+
+
+
 
 
                     {!progress?.completed ? (
+
 
                         <CompleteLessonButton
 
@@ -130,25 +190,34 @@ export default async function LessonPage({
 
                         />
 
-                    ):(
 
-                        <span className="rounded-xl bg-green-100 px-6 py-3 font-bold text-green-700">
+                    ) : (
+
+
+                        <span className="rounded-xl bg-green-100 px-6 py-3 text-center font-bold text-green-700">
 
                             ✓ Lesson Completed
 
                         </span>
 
+
                     )}
 
 
 
-                    {lesson.lesson_quizzes?.length>0 && (
+
+
+                    {lesson.lesson_quizzes?.length > 0 && (
+
 
                         <Link
 
+
                             href={`/student/quizzes/${lesson.lesson_quizzes[0].id}`}
 
-                            className="rounded-xl bg-brand-primary px-8 py-3 font-bold text-white"
+
+                            className="rounded-xl bg-brand-primary px-8 py-3 text-center font-bold text-white hover:bg-brand-dark"
+
 
                         >
 
@@ -156,16 +225,23 @@ export default async function LessonPage({
 
                         </Link>
 
+
                     )}
+
 
 
                 </div>
 
 
+
             </div>
+
+
 
         </main>
 
+
     );
+
 
 }
