@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { getStudentProfile, getStudentCourses, getTutorAssignment } from "@/lib/student/student";
 import { redirect } from "next/navigation";
 
 
@@ -26,16 +27,7 @@ export default async function StudentPage() {
 
 
 
-    const { data:profile } = await supabase
-        .from("profiles")
-        .select(
-            "first_name,last_name,student_id,phone,role"
-        )
-        .eq(
-            "id",
-            user.id
-        )
-        .single();
+    const profile = await getStudentProfile(user.id);
 
 
 
@@ -65,26 +57,7 @@ export default async function StudentPage() {
 
 
 
-    const { data:courses } = await supabase
-        .from("student_courses")
-        .select(`
-            id,
-            payment_status,
-            courses(
-                course_name,
-                level
-            )
-        `)
-        .eq(
-            "student_id",
-            user.id
-        )
-        .order(
-            "id",
-            {
-                ascending:false
-            }
-        );
+    const courses = await getStudentCourses(user.id);
 
 
 
@@ -356,5 +329,9 @@ export default async function StudentPage() {
 
 
 }
+
+
+
+
 
 
