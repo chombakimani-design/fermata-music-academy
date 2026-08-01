@@ -13,11 +13,11 @@ export default function Logo() {
       />
 
       <div>
-        <h1 className="text-3xl font-bold text-[#0B3C88]">
+        <h1 className="text-xl sm:text-2xl font-bold text-[#0B3C88]">
           Fermata
         </h1>
 
-        <p className="text-sm uppercase tracking-[0.35em] text-amber-600">
+        <p className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-amber-600">
           Music Academy
         </p>
       </div>
