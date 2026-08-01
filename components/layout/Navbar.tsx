@@ -12,11 +12,11 @@ export default function Navbar() {
 
         <header className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur shadow-sm">
 
-            <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+            <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between px-4 xl:px-6">
 
                 <Logo />
 
-                <nav className="hidden items-center gap-4 xl:gap-8 lg:flex">
+                <nav className="hidden items-center gap-3 xl:gap-6 xl:flex">
 
                     <Link href="/" className="font-medium hover:text-brand-primary">
                         Home
