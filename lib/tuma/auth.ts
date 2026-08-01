@@ -4,8 +4,10 @@ const API_KEY = process.env.TUMA_API_KEY!;
 
 type TokenResponse = {
     success: boolean;
-    token: string;
-    expires_in: number;
+    data: {
+        token: string;
+        expires_in: number;
+    };
 };
 
 export async function getTumaToken() {
@@ -27,9 +29,9 @@ export async function getTumaToken() {
 
     const json = (await res.json()) as TokenResponse;
 
-    if (!json.success) {
+    if (!json.success || !json.data?.token) {
         throw new Error("Unable to authenticate with Tuma.");
     }
 
-    return json.token;
+    return json.data.token;
 }
