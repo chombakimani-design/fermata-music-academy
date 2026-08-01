@@ -129,6 +129,19 @@ export async function register(formData: FormData) {
 
     if (error) {
 
+        if (
+            error.message.includes(
+                "User already registered"
+            )
+        ) {
+
+            redirect(
+                "/auth/login?message=Account already exists. Please login."
+            );
+
+        }
+
+
         throw new Error(
             error.message
         );
@@ -141,14 +154,16 @@ export async function register(formData: FormData) {
         formData.get("course") ?? ""
     ).trim();
 
+
     if (course) {
 
-        redirect(`/auth/login?next=/student/courses/${course}`);
+        redirect(
+            `/auth/login?next=/student/courses/${course}`
+        );
 
     }
+
 
     redirect("/welcome");
 
 }
-
-
