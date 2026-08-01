@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Logo from "@/components/branding/Logo";
 import { createClient } from "@/lib/supabase/server";
+import { getStudentCourses } from "@/lib/student/student";
 import { redirect } from "next/navigation";
 
 
@@ -26,39 +27,7 @@ export default async function MyCoursesPage() {
 
 
 
-    const { data:courses } = await supabase
-        .from("student_courses")
-        .select(`
-            id,
-            payment_status,
-            competence_level,
-            availability,
-            enrolled_at,
-            courses(
-                course_name,
-                description,
-                duration,
-                fee,
-                level,
-                tutor_courses(
-                    profiles(
-                        first_name,
-                        last_name,
-                        auth_email
-                    )
-                )
-            )
-        `)
-        .eq(
-            "student_id",
-            user.id
-        )
-        .order(
-            "enrolled_at",
-            {
-                ascending:false
-            }
-        );
+    const courses = await getStudentCourses(user.id);
 
 
 
@@ -247,5 +216,7 @@ export default async function MyCoursesPage() {
 
 
 }
+
+
 
 
