@@ -152,6 +152,3 @@ export default async function PaymentPage({
     );
 
 }
-
-
-

@@ -59,7 +59,7 @@ export default function Footer() {
 
                         <p>📞 +254 722 866 836</p>
 
-                        <p>✉️ fermatamusicacademy@gmail.com</p>
+                        <p>✉️ fermatamacad@gmail.com</p>
 
                         <p>𝕏 @fermataAcademy</p>
 

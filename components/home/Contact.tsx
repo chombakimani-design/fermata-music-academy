@@ -45,11 +45,11 @@ export default function Contact() {
                     </a>
 
                     <a
-                        href="mailto:fermatamusicacademy@gmail.com"
+                        href="mailto:fermatamacad@gmail.com"
                         className="flex items-center gap-3 rounded-full border border-amber-200 bg-amber-50 px-5 py-3 text-lg font-bold text-slate-800 transition hover:scale-105 hover:bg-amber-100"
                     >
                         <Mail className="h-8 w-8 text-amber-600" />
-                        <span>fermatamusicacademy@gmail.com</span>
+                        <span>fermatamacad@gmail.com</span>
                     </a>
 
                 </div>

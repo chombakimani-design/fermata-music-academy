@@ -10,11 +10,11 @@ export default function Navbar() {
 
     return (
 
-        <header className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur shadow-sm">
+        <header className="sticky top-0 z-50 w-full overflow-x-hidden border-b bg-white/95 backdrop-blur shadow-sm">
 
-            <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between px-4 xl:px-6">
+            <div className="mx-auto flex min-h-20 w-full max-w-7xl items-center justify-between gap-2 px-3 sm:px-4 xl:px-6">
 
-                <Logo />
+                <div className="shrink-0"><Logo /></div>
 
                 <nav className="hidden items-center gap-3 xl:gap-6 xl:flex">
 

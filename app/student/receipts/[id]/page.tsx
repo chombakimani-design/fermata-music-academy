@@ -158,8 +158,25 @@ export default async function StudentReceiptPage({
             </div>
 
 
+            <div className="mt-10 flex justify-center print:hidden">
+
+                <button
+                    type="button"
+                    onClick={() => window.print()}
+                    className="rounded-lg bg-brand-primary px-8 py-3 font-bold text-white hover:bg-brand-dark"
+                >
+                    🖨 Print Receipt
+                </button>
+
+            </div>
+
         </FermataReceipt>
 
     );
 
 }
+
+
+
+
+
